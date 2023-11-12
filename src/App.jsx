@@ -15,7 +15,7 @@ const getContactsLs = () => {
 
 export const App = () => {
   const [contacts, setContacts] = useState(getContactsLs);
-  const [filter] = useState('');
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -37,6 +37,10 @@ export const App = () => {
     ]);
   };
 
+  const filterValue = target => {
+    setFilter(target);
+  };
+
   const deleteContact = id => {
     setContacts(prevState => prevState.filter(contact => contact.id !== id));
   };
@@ -53,7 +57,7 @@ export const App = () => {
       {contacts.length > 0 && (
         <Layout>
           <TitleH2>Contacts</TitleH2>
-          <Filter inputValue={filter} onFilter />
+          <Filter inputValue={filter} onFilter={filterValue} />
           <ContactsList
             contacts={visibleItems}
             onDeleteContact={deleteContact}
