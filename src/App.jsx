@@ -33,7 +33,7 @@ export const App = () => {
 
     setContacts(prevContacts => [
       ...prevContacts,
-      { ...newContact, id: nanoid },
+      { ...newContact, id: nanoid() },
     ]);
   };
 
